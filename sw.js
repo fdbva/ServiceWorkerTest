@@ -1,4 +1,4 @@
-var CACHE_NAME = 'reader-cache-v1';
+var CACHE_NAME = 'reader-cache-v2';
 var urlsToCache = [
   '/',
   'index.html',
