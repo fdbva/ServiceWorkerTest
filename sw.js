@@ -1,12 +1,12 @@
 var CACHE_NAME = 'reader-cache-v1';
 var urlsToCache = [
   '/',
-  '/index.html',
-  '/main.css',
-  '/scripts/gdrive.js',
-  '/scripts/Scraping.js',
-  '/scripts/IndexedDb.js',
-  '/scripts/main.js'
+  'index.html',
+  'main.css',
+  'scripts/gdrive.js',
+  'scripts/Scraping.js',
+  'scripts/IndexedDb.js',
+  'scripts/main.js'
 ];
 
 self.addEventListener('install', function(event) {
