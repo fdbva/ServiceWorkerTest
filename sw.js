@@ -1,4 +1,4 @@
-var CACHE_NAME = 'reader-cache-v7';
+var CACHE_NAME = 'reader-cache-v8';
 var urlsToCache = [
   '/',
   'index.html',
@@ -17,7 +17,9 @@ self.addEventListener('install', function(event) {
       .then(function(cache) {
         console.log('Opened cache');
         return cache.addAll(urlsToCache);
-      })
+      }).then(function (){
+      return self.skipWaiting();
+    })
   );
 });
 self.addEventListener('fetch', function(event) {
@@ -61,17 +63,18 @@ self.addEventListener('fetch', function(event) {
 });
 self.addEventListener('activate', function(event) {
 
-  var cacheWhitelist = ['reader-cache-v1'];
+	return self.clients.claim();
+  // var cacheWhitelist = ['reader-cache-v1'];
 
-  event.waitUntil(
-    caches.keys().then(function(cacheNames) {
-      return Promise.all(
-        cacheNames.map(function(cacheName) {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
-  );
+  // event.waitUntil(
+  //   caches.keys().then(function(cacheNames) {
+  //     return Promise.all(
+  //       cacheNames.map(function(cacheName) {
+  //         if (cacheWhitelist.indexOf(cacheName) === -1) {
+  //           return caches.delete(cacheName);
+  //         }
+  //       })
+  //     );
+  //   })
+  // );
 });
