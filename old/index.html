@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>Offline Reader</title>
-    <link rel='shortcut icon' href='favicon.ico?v2' type='image/x-icon'/ >
     <link rel="stylesheet" href="main.css">
+    <link rel='shortcut icon' href='favicon.ico?v2' type='image/x-icon'/ >
 </head>
 <body>
     <section class="loader">
@@ -17,7 +17,25 @@
             <input id="input-scrape" type="text" placeholder="Insert a valid Url...." value="https://www.fictionpress.com/s/2961893/1/Mother-of-Learning">
             <button id="btn-scrape" >Scrape&Save</button>
         </div>
-        <div class="sidebar-list"></div>
+        <div class="sidebar-list">
+    <div id="authorize-div" style="display: none">
+      <span>Authorize access to Drive API</span>
+      <!--Button for the user to click to initiate auth sequence -->
+      <button id="authorize-button" onclick="handleAuthClick(event)">
+        Authorize
+      </button>
+    </div>
+    <pre id="output"></pre>
+            <!-- <a href="/css/" class="sidebar-list--item" data-slug="css" title="Os Miseráveis" tabindex="-1">
+                <span class="sidebar-list--text">Os Miseráveis</span>
+            </a>
+            <a href="/css/" class="sidebar-list--item active" data-slug="css" title="Twenty Thousand Leagues Under the Sea" tabindex="-1">
+                <span class="sidebar-list--text">Twenty Thousand Leagues Under the Sea</span>
+            </a>
+            <a href="/css/" class="sidebar-list--item" data-slug="css" title="Captain Antifer" tabindex="-1">
+                <span class="sidebar-list--text">Captain Antifer</span>
+            </a> -->
+        </div>
     </section>
     <section class="reader">
         <div class="title" id="title">
@@ -37,8 +55,9 @@
         </div>
         <div class="text" id="storyList"></div>
     </section>
-
+    <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
     <script src="scripts/pace.js"></script>
+    <script src="scripts/gdrive.js"></script>
     <script src="scripts/Scraping.js"></script>
     <script src="scripts/IndexedDb.js"></script>
     <script src="scripts/main.js"></script>

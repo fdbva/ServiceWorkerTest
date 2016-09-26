@@ -12,7 +12,7 @@
   // Used to keep track of which view is displayed to avoid uselessly reloading it
   let current_view_pub_key;
 
-  function openDb(fn) {
+  function openDb() {
     console.log("openDb ...");
     const req = indexedDB.open(DB_NAME, DB_VERSION);
     req.onsuccess = function (evt) {
@@ -21,7 +21,6 @@
       // db = req.result;
       db = this.result;
       console.log("openDb DONE");
-      fn();
     };
     req.onerror = function (evt) {
       console.error("openDb:", evt.target.errorCode);
@@ -69,7 +68,6 @@
     request.onsuccess = function(event) {
       if(request.result){
         const value = event.target.result;
-        console.log(value.Content.slice(0, 300));
           //TODO: Raphael, a logica de cada capítulo deve entrar aqui, essa é a estrutura básica
           //pode transformar em callback, como em populateStoryArray
           storyList.innerHTML = `<div class="chapterBox">${value.Content}</div>`;
@@ -196,14 +194,7 @@
   //   const store = getObjectStore(DB_STORE_NAME, 'readonly');
   // }
 
-  function addOrReplaceStory(chapterId, storyName, url, content, numberOfChapters) {
-    const obj = {
-      "ChapterId": chapterId,
-      "StoryName": storyName,
-      "Url": url,
-      "Content": content,
-      "NumberOfChapters": numberOfChapters};
-
+  function addOrReplaceStory(obj) {
     const store = getObjectStore(DB_STORE_NAME, 'readwrite');
     let req;
     try {
@@ -215,7 +206,7 @@
       throw e;
     }
     req.onsuccess = function (evt) {
-      console.log("Insertion in DB successful");
+      //console.log("Insertion in DB successful");
       // displayActionSuccess();
       //displayStoryList(store);
     };
@@ -361,3 +352,6 @@
     // });
 
   // }
+
+  openDb();
+  //addEventListeners();

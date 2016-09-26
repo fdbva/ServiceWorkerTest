@@ -1,9 +1,10 @@
-var CACHE_NAME = 'reader-cache-v11';
+var CACHE_NAME = 'reader-cache-v10';
 var urlsToCache = [
   '/',
   'index.html',
   'main.css',
   'scripts/pace.js',
+  'scripts/gdrive.js',
   'scripts/Scraping.js',
   'scripts/IndexedDb.js',
   'scripts/main.js'
